@@ -17,6 +17,7 @@ gem 'faraday'
 gem 'rspec-rails'
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'bootstrap-sass'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

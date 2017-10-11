@@ -9,8 +9,12 @@
   </head>
 
   <body>
-    <%= link_to "Login",
-      "https://github.com/login/oauth/authorize?client_id=91b0e26c573967db1638&scope=repo" %>
+    <% if current_user %>
+      Hello, <%= current_user.name %>
+      <%= link_to "Logout", logout_path, method: :delete %>
+    <% else %>
+      <%= link_to "Sign in with Github", github_login_path %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
