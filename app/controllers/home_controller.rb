@@ -8,6 +8,7 @@ class HomeController < ApplicationController
     response = @conn.get("/")
 
     results = JSON.parse(response.body, symbolize_names: true)
-    binding.pry
+
+    @user = current_user
   end
 end

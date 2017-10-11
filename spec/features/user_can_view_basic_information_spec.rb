@@ -13,7 +13,7 @@ feature "User can view basic github information" do
   scenario "a user logs in and can view their basic github information" do
 
     visit "/"
-
+    binding.pry
     expect(page).to have_css('.user', count: 1)
     within('.user') do
       expect(page).to have_css('.name')
