@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 feature "User can view basic github information" do
+
+  before(:each) do
+    @user = User.create(
+      uid: "1",
+      name: "Jan Rodricks",
+      login: "Childhood's End",
+      oauth_token: ""
+    )
+  end
   scenario "a user logs in and can view their basic github information" do
 
     visit "/"
