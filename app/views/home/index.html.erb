@@ -1,11 +1,13 @@
 <h1>Sup dawg, its yo home page</h1>
+<% if @user %>
 <div class="current_user">
   <ul class="user">
     <li class="name"> <%= @user.name %> </li>
     <li class="login"> <%= @user.login %> </li>
-    <li class="profile_pic"> <%= @user.profile_pic %> </li>
+    <li class="profile_pic"> <%= image_tag @user.profile_pic %> </li>
     <li class="starred_repos"> <%= @user.starred_repos %> </li>
     <li class="followers"> <%= @user.followers %> </li>
     <li class="following"> <%= @user.following %> </li>
   </ul>
+<% end %>
 </div>
