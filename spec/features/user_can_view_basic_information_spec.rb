@@ -3,19 +3,14 @@ require 'rails_helper'
 feature "User can view basic github information" do
 
   before(:each) do
-    @user = User.create(
-      uid: "1",
-      name: "Jan Rodricks",
-      login: "Childhood's End",
-      oauth_token: ""
-    )
+    stub_omniauth
   end
-  scenario "a user logs in and can view their basic github information" do
 
+  scenario "a user logs in and can view their basic github information" do
     visit "/"
-    binding.pry
-    expect(page).to have_css('.user', count: 1)
-    within('.user') do
+    click_on "Sign in with Github"
+    expect(current_path).to eq("/")
+    within(first('.user')) do
       expect(page).to have_css('.name')
       expect(page).to have_css('.login')
       expect(page).to have_css('.profile_pic')
@@ -24,4 +19,5 @@ feature "User can view basic github information" do
       expect(page).to have_css('.following')
     end
   end
+
 end
