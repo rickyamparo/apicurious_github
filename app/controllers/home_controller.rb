@@ -1,14 +1,22 @@
 class HomeController < ApplicationController
   def index
+    @user = current_user
+
     @conn = Faraday.new(url: "https://api.github.com/") do |faraday|
       faraday.adapter Faraday.default_adapter
+      faraday.headers["X-API-KEY"] = ENV["GITHUB_API_KEY"]
     end
-    @conn.headers["X-API-KEY"] = "91b0e26c573967db1638"
 
-    response = @conn.get("/")
+    raw_followers = @conn.get("/users/rickyamparo/followers").env.body
+    followers = JSON.parse(raw_followers, symbolize_names: true).count
+    @user.followers = followers
 
-    results = JSON.parse(response.body, symbolize_names: true)
+    raw_starred = @conn.get("/users/rickyamparo/starred").env.body
+    starred_repos = JSON.parse(raw_starred, symbolize_names: true).map {|starred| starred[:name]}
+    @user.starred_repos = starred_repos[0]
 
-    @user = current_user
+    raw_following = @conn.get("/users/rickyamparo/following").env.body
+    following = JSON.parse(raw_following, symbolize_names: true).count
+    @user.following = following
   end
 end

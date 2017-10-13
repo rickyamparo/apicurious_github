@@ -5,9 +5,9 @@
     <li class="name"> <%= @user.name %> </li>
     <li class="login"> <%= @user.login %> </li>
     <li class="profile_pic"> <%= image_tag @user.profile_pic %> </li>
-    <li class="starred_repos"> <%= @user.starred_repos %> </li>
-    <li class="followers"> <%= @user.followers %> </li>
-    <li class="following"> <%= @user.following %> </li>
+    <li class="starred_repos"> Starred Repos: <%= @user.starred_repos %> </li>
+    <li class="followers"> Followers: <%= @user.followers %> </li>
+    <li class="following"> Following: <%= @user.following %> </li>
   </ul>
 <% end %>
 </div>
